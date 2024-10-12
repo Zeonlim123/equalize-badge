@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equalize Badge App</title>
+    
+    <!-- Google Font: Orbitron (Technology Inspired) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif; /* Default font for body text */
+            padding-top: 100px; /* Increased space at the top for the fixed header */
+            min-height: 100vh;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+
+        /* Apply Orbitron font only to headings (topics) */
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0044cc;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px; /* Add padding to improve clickable area */
+            position: relative; /* Position relative for pseudo-element */
+        }
+
+        /* Active link underline styling */
+        nav ul li a.active::after {
+            content: ''; /* Create an underline effect */
+            position: absolute;
+            left: 0;
+            bottom: 0; /* Position the underline */
+            width: 100%;
+            height: 2px; /* Height of the underline */
+            background-color: #fff; /* Color of the underline */
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline; /* Underline on hover for non-active links */
+        }
+
+        /* Main Section Styles */
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            scroll-margin-top: 120px; /* Increased space to adjust for the fixed header */
+        }
+
+        section h2 {
+            color: #0044cc;
+        }
+
+        /* Form Styles */
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0044cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003399;
+        }
+
+        /* Confirmation Message Styles */
+        .confirmation-message {
+            display: none; /* Hidden by default */
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #d4edda; /* Green background for success */
+            color: #155724; /* Dark green text */
+            border: 1px solid #c3e6cb; /* Border matching background */
+            border-radius: 5px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0044cc;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Equalize Badge</h1>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#apply">Apply for Badge</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#ai-feedback">AI-Powered Feedback</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <h2>Welcome to the Equalize Badge Initiative</h2>
+            <p>Join us in promoting gender equality in organizations through a certification process that proves your commitment to inclusivity.</p>
+            <button onclick="location.href='#apply'">Get Started</button>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Us</h2>
+            <p>The Equalize Badge is a comprehensive tool designed to help organizations assess, enhance, and promote gender equality practices.</p>
+            <h3>Key Goals:</h3>
+            <ul>
+                <li>Foster a culture of inclusivity where every employee, regardless of gender, feels respected and empowered.</li>
+                <li>Provide a clear, actionable roadmap to achieve true gender equity, including pay equity and increased representation of women in leadership.</li>
+                <li>Set an example by achieving the Equalize Badge, showing your commitment to gender equality, and inspiring broader societal change.</li>
+            </ul>
+        </section>
+
+        <!-- Apply Section -->
+        <section id="apply">
+            <h2>Apply for the Equalize Badge</h2>
+            <p>Start the journey by completing the application process, which includes an eligibility quiz and self-assessment.</p>
+            <form id="application-form">
+                <label for="orgName">Organization Name:</label>
+                <input type="text" id="orgName" name="orgName" required>
+                
+                <label for="contactPerson">Contact Person:</label>
+                <input type="text" id="contactPerson" name="contactPerson" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <button type="submit">Submit Application</button>
+            </form>
+            <div id="app-confirmation" class="confirmation-message">Application sent successfully!</div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources">
+            <h2>Resources</h2>
+            <h3>Guides and Toolkits</h3>
+            <ul>
+                <li><a href="#">Downloadable Resource 1</a></li>
+                <li><a href="#">Downloadable Resource 2</a></li>
+            </ul>
+            <h3>Webinars</h3>
+            <p>Join our upcoming webinars to learn more about implementing gender equality practices in your organization.</p>
+        </section>
+
+        <!-- AI-Powered Feedback Section -->
+        <section id="ai-feedback">
+            <h2>AI-Powered Feedback</h2>
+            <p>The Equalize Badge uses advanced AI to analyze your organization's data, identifying gender equity gaps and providing actionable recommendations.</p>
+            <h3>How AI Supports the Process:</h3>
+            <ul>
+                <li>AI analyzes pay equity assessments, representation metrics, and policy data to ensure accuracy and fairness.</li>
+                <li>It benchmarks your organization against industry standards, offering tailored feedback for improvement.</li>
+                <li>After earning the badge, AI conducts regular audits to track progress and ensure sustained gender equity efforts.</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="contactEmail">Email:</label>
+                <input type="email" id="contactEmail" name="contactEmail" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+            <div id="contact-confirmation" class="confirmation-message">Message sent successfully!</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Equalize Badge Initiative. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to highlight active section in the nav
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        // Set the active link immediately on click
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Confirmation messages for forms
+        const applicationForm = document.getElementById('application-form');
+        const contactForm = document.getElementById('contact-form');
+
+        applicationForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            document.getElementById('app-confirmation').style.display = 'block'; // Show confirmation
+            applicationForm.reset(); // Reset the form
+        });
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            document.getElementById('contact-confirmation').style.display = 'block'; // Show confirmation
+            contactForm.reset(); // Reset the form
+        });
+    </script>
+
+</body>
+</html>
